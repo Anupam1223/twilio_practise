@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "twilio_practise"
+version = "0.1.0"
+description = ""
+authors = ["Anupam1223 <50481498+Anupam1223@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "^21.10b0"
+twilio = "^7.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
