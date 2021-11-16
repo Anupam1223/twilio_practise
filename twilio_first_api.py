@@ -1,15 +1,20 @@
+from cryptography.fernet import Fernet
 from twilio.twiml.voice_response import VoiceResponse
 from fastapi import FastAPI
 from fastapi.responses import Response
 import uvicorn
+from encryption import decrypt_token
 
 app = FastAPI()
 
 
-@app.post("/return_response")
-def return_response() -> Response:
-    msg = format_voice_response("Here I am. Here I will remain.")
-    return Response(content=msg, media_type="application/xml", status_code=201)
+@app.post("/return_response/{msg}")
+def return_response(msg) -> Response:
+    value = decrypt_token(token=msg)
+    response_value = format_voice_response(value)
+    return Response(
+        content=response_value, media_type="application/xml", status_code=201
+    )
 
 
 def format_voice_response(msg: str) -> str:
